@@ -1,38 +1,74 @@
 .App {
-  text-align: center;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 3rem;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.addTodo {
+    width: 40vw;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.addTodo *{
+    font-weight: bold;
+    border-radius: .4rem;
+    padding: .6rem;
+    border: 1px solid black;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.addTodo input {
+    flex-grow: 1;
 }
 
-.App-link {
-  color: #61dafb;
+.addTodo button {
+    cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.addTodo button:hover {
+    filter: brightness(90%);
+}
+
+.todos {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1.2rem;
+    width: 40vw;
+    border: 1px solid black;
+    border-radius: 1rem;
+}
+
+.todos .todo {
+    width: 100%;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.todos .todo:not(:last-child) {
+    border-bottom: 1px solid #b5b5b5;
+    padding-bottom: 1.2rem;
+}
+
+.todos .todo .todoTitle{
+    cursor: pointer;
+    flex-grow: 1;
+}
+
+.todos .todo .todoTitle.completed {
+    text-decoration: line-through #df0000;
+}
+
+.todos .todo .deleteButton{
+    color: #df0000;
+    font-size: .8rem;
+    cursor: pointer;
 }

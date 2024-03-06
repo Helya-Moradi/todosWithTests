@@ -1,3 +1,5 @@
+import Todo from "./todo";
+
 function Todos({todos, setTodos}) {
 
     const completeHandler = (id) => {
@@ -21,24 +23,12 @@ function Todos({todos, setTodos}) {
         <div className="todos">
             {
                 todos.map((todo, index) => (
-                    <div className="todo" key={`todo-${index + 1}`}>
-                        <span
-                            className={`todoTitle ${todo.completed && 'completed'}`}
-                            onClick={() => {
-                                completeHandler(todo.id)
-                            }}
-                        >
-                          {todo.todo}
-                        </span>
-
-                        <span
-                            className="deleteButton"
-                            onClick={() => {
-                                deleteHandler(todo.id)
-                            }}>
-                            Delete
-                        </span>
-                    </div>
+                    <Todo
+                        data={todo}
+                        key={`todo-${index + 1}`}
+                        onComplete={completeHandler}
+                        onDelete={deleteHandler}
+                    />
                 ))
             }
         </div>

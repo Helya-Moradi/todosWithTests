@@ -1,19 +1,11 @@
 import {useState} from "react";
 
-function AddTodos({todos, setTodos}) {
+function AddTodo({addTodoHandler}) {
     const [inputValue, setInputValue] = useState('');
 
-    const addTodoHandler = () => {
-        if (inputValue) {
-            const newTodos = [...todos]
-            const newTodo = {
-                id: todos.length + 1,
-                todo: inputValue,
-                completed: false
-            }
-
-            newTodos.push(newTodo);
-            setTodos(newTodos);
+    function addTodo(){
+        if(inputValue){
+            addTodoHandler(inputValue);
             setInputValue('');
         }
     }
@@ -21,14 +13,21 @@ function AddTodos({todos, setTodos}) {
     return (
         <div className='addTodo'>
             <input
-                type="text" value={inputValue}
+                data-testid="todo-input"
+                type="text"
+                value={inputValue}
                 onChange={(e) => {
                     setInputValue(e.target.value)
                 }}/>
 
-            <button onClick={addTodoHandler}>Add Todo</button>
+            <button
+                onClick={addTodo}
+                data-testid="button"
+            >
+                Add Todo
+            </button>
         </div>
     )
 }
 
-export default AddTodos;
+export default AddTodo;

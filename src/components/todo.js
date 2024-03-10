@@ -1,19 +1,20 @@
-function Todo({data, onComplete, onDelete}) {
+function Todo({todo, completeTodoHandler, deleteTodoHandler}) {
     return (
         <div className="todo">
             <span
-                className={`todoTitle ${data.completed && 'completed'}`}
+                className={`todoTitle ${todo.completed && 'completed'}`}
                 onClick={() => {
-                    onComplete(data.id)
+                    completeTodoHandler(todo.id)
                 }}
             >
-              {data.todo}
+              {todo.todo}
             </span>
 
             <span
+                data-testid='delete'
                 className="deleteButton"
                 onClick={() => {
-                    onDelete(data.id)
+                    deleteTodoHandler(todo.id)
                 }}>
                 Delete
             </span>

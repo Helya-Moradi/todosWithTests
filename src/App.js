@@ -1,7 +1,7 @@
 import './App.css';
 import {useState} from "react";
 import Todos from "./components/todos";
-import AddTodos from "./components/addTodo";
+import AddTodo from "./components/addTodo";
 
 function App() {
     const [todos, setTodos] = useState([
@@ -11,10 +11,45 @@ function App() {
         {id: 4, todo: 'Play', completed: false},
     ])
 
+    const addTodoHandler = (input) => {
+        const newTodos = [...todos]
+
+        const newTodo = {
+            id: todos.length + 1,
+            todo: input,
+            completed: false
+        }
+
+        newTodos.push(newTodo);
+        setTodos(newTodos);
+    }
+
+    const completeTodoHandler = (id) => {
+        const newTodos = [...todos];
+
+        const findTodo = newTodos.find(todo => todo.id === id);
+        findTodo.completed = !findTodo.completed;
+
+        setTodos(newTodos);
+    }
+
+    const deleteTodoHandler = (id) => {
+        const newTodos = [...todos];
+
+        const filteredTodo = newTodos.filter(todo => todo.id !== id);
+
+        setTodos(filteredTodo);
+    }
+
     return (
         <div className="App">
-            <AddTodos todos={todos} setTodos={setTodos}/>
-            <Todos todos={todos} setTodos={setTodos}/>
+            <AddTodo addTodoHandler={addTodoHandler}/>
+
+            <Todos
+                todos={todos}
+                completeTodoHandler={completeTodoHandler}
+                deleteTodoHandler={deleteTodoHandler}
+            />
         </div>
     );
 }

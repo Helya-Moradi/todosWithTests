@@ -13,6 +13,7 @@ function AddTodo({addTodoHandler}) {
     return (
         <div className='addTodo'>
             <input
+                id="addInput"
                 data-testid="todo-input"
                 type="text"
                 value={inputValue}
@@ -23,6 +24,7 @@ function AddTodo({addTodoHandler}) {
             <button
                 onClick={addTodo}
                 data-testid="button"
+                id='addButton'
             >
                 Add Todo
             </button>
